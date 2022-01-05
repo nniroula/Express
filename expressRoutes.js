@@ -53,6 +53,15 @@ app.get('/search', (req, res) => {
     return res.send(`Term is ${term}, and sort is ${sort}`);
 })
 
+// request.headers
+app.get('/show-me-headers', (req, res) => {
+    console.log(req.headers);
+    console.log(req.rawHeaders);
+
+    res.send(req.headers);
+})
+
+
 // route handler
 app.listen(3000, ()=>{
     console.log("Server running on port 3000");
