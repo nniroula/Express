@@ -3,6 +3,11 @@ const express = require("express");
 //instantiate express
 const app = express();
 
+// for using parsing json  data in req.body
+app.use(express.json());
+// for parsing html form datat in req.body
+app.use(express.urlencoded({extended: true}));
+
 /*
 
 //define a route
@@ -59,6 +64,32 @@ app.get('/show-me-headers', (req, res) => {
     console.log(req.rawHeaders);
 
     res.send(req.headers);
+})
+
+// req.body --> roughly for authentication and authorization
+/* For this to work, add app.use(express.json()) --> for json data
+    app.use(express.urlencoded({extended: true})) --> for html form data coming in as request
+    These statements should go at the top to the js file below express instantiation
+*/
+app.post('/register', (req, res) => {
+    // res.send(req.body);
+    res.send(req.body.username);
+})
+
+
+// return with json response
+const CANDIES = [
+    {name: "snickers", qty: 3, price: 1.5},
+    { name: "lolli pop", qty: 6, price: 2.0}
+];
+// route to display that candies databse
+app.get('/candies', (req, res) => {
+    res.json(   CANDIES);
+})
+// post request for the candies database
+app.post('/candies', (req, res) => {
+    // CANDIES.push(req.body);
+    res.json(CANDIES);
 })
 
 
