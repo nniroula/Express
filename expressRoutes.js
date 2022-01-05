@@ -30,8 +30,22 @@ app.post('/hello', (req, res)=>{
     console.log("Back-end coding here please");
     res.send("Hello coding lovers");
 })
+// database to use params and parameter variables
+let greetings = {
+    en: "hello",
+    fr: "bonjour",
+    nep: "k cha"
+}
+// variables in url parameters, use params object
+app.get('/greet/:language', (req, res)=>{
+    // console.log(req.params);  // returns what is passed as url parameters
+    const lang = req.params.language;  // requires.params.variableName
+    const greeting = greetings[lang];
+    res.send(greeting);
+})
 
 // route handler
 app.listen(3000, ()=>{
     console.log("Server running on port 3000");
+    console.log("BACK END NODE CODING!!!");
 })
