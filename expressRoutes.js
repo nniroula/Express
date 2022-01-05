@@ -44,6 +44,15 @@ app.get('/greet/:language', (req, res)=>{
     res.send(greeting);
 })
 
+// req.query string in query string parameters in url
+app.get('/search', (req, res) => {
+    // destructuring of object
+    // const {term, sort} = req.query;
+    // if you need a default  value, do the following
+    const {term = "pig", sort = "fatty meat"} = req.query;
+    return res.send(`Term is ${term}, and sort is ${sort}`);
+})
+
 // route handler
 app.listen(3000, ()=>{
     console.log("Server running on port 3000");
