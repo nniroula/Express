@@ -1,13 +1,20 @@
 // import express
-const express = require("express"); 
+const express = require("express");
+
+// import router.js file
+const routerFile = require("./router");
 //instantiate express
 const app = express();
+
 
 // for using parsing json  data in req.body
 app.use(express.json());
 // for parsing html form datat in req.body
 app.use(express.urlencoded({extended: true}));
 
+
+// user router.js file with app
+app.use('/users', routerFile);
 /*
 
 //define a route
